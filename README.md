@@ -1,7 +1,11 @@
 # Supersample Set-Input Bound Experiments
 
-This repository contains a **minimal, self-contained** release for reproducing the
-paper's numerical bound evaluations:
+This repository contains a **minimal, self-contained** release for reproducing
+the numerical bound evaluations in our NeurIPS 2026 paper
+*Information-Theoretic Generalization for Set-Input Optimization-Valued
+Objectives*.
+
+Experiments included:
 
 1. **CelebA / ViT** supersample retrain bounds (`scripts/`)
 2. **Flights200K** multicalibration, CVaR, and CR-DRO bounds (`flights_mc_cvar_dro/`)
