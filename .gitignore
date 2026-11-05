@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Data and experiment artifacts (regenerate locally)
+data/CelebA/img_align_celeba/
+data/CelebA/list_attr_celeba.csv
+data/CelebA/*.zip
+results/**
+!results/.gitkeep
+
+# Model caches
+*.pkl
+*.npz
+checkpoints/
+.cache/
+huggingface/

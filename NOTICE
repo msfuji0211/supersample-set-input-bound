@@ -1,0 +1,13 @@
+This repository is a focused release for reproducing supersample
+retraining experiments on CelebA with ViT.
+
+Substantial infrastructure (dataset loading, ViT wrapper, multicalibration
+bin/group utilities, and related helpers) is adapted from the public
+empirical multicalibration codebase of Hansen et al.:
+
+  https://github.com/Siddartha-Devic/empirical-multicalibration
+
+That upstream project is released under the MIT License. The original
+LICENSE file is retained in this repository. This release uses the
+upstream code as implementation infrastructure and does not rely on it
+as a source of theoretical claims.
