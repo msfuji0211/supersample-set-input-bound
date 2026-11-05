@@ -1,10 +1,13 @@
-# Supersample Set-Input Bound Experiments (CelebA / ViT)
+# Supersample Set-Input Bound Experiments
 
 This repository contains a **minimal, self-contained** release for reproducing the
-paper's numerical bound evaluation on **CelebA** with **ViT**.
+paper's numerical bound evaluations:
 
-The pipeline estimates single-index local information terms for two set-input
-objectives:
+1. **CelebA / ViT** supersample retrain bounds (`scripts/`)
+2. **Flights200K** multicalibration, CVaR, and CR-DRO bounds (`flights_mc_cvar_dro/`)
+
+The CelebA/ViT pipeline estimates single-index local information terms for two
+set-input objectives:
 
 - `worst`: finite bin/group/class multicalibration moment diagnostic
 - `cvar`: CVaR of absolute calibration residual `|p - y|` (default `α=0.2`)
@@ -33,6 +36,9 @@ objectives:
 │   ├── rebuild_supersample_retrain_summary.py
 │   ├── plot_supersample_retrain_bound.py
 │   └── supersample_retrain_worst_common.py
+├── flights_mc_cvar_dro/
+│   ├── README.md
+│   └── run_experiment.py
 ├── data/CelebA/          # place CelebA here
 └── results/              # created at runtime
 ```
@@ -153,7 +159,39 @@ CUDA_VISIBLE_DEVICES=0 python scripts/run_supersample_retrain_worst_cvar_eval.py
   not the `models/` folder listing.
 - First ViT run downloads `google/vit-base-patch16-224-in21k` from Hugging Face.
 
+## Flights200K MC / CVaR / CR-DRO
+
+Self-contained logistic-regression experiments on Flights200K live in
+`flights_mc_cvar_dro/`. They produce four figures covering multicalibration,
+CVaR α-sensitivity, and CR-DRO shape/radius sensitivity. Details, defaults, and
+resume options are in [`flights_mc_cvar_dro/README.md`](flights_mc_cvar_dro/README.md).
+
+```bash
+cd flights_mc_cvar_dro
+python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 \
+  matplotlib==3.10.8 joblib==1.5.3 threadpoolctl==3.6.0
+python run_experiment.py
+```
+
+Outputs (PDF and PNG) are written under `flights_mc_cvar_dro/results/`. Use
+`--resume` to continue an interrupted run or regenerate figures from checkpoints.
+
 ## Attribution
 
-This release adapts infrastructure from Hansen et al.'s empirical multicalibration
-codebase (MIT License). See `LICENSE` and `NOTICE`.
+This release adapts infrastructure from Hansen et al.'s empirical
+multicalibration codebase (MIT License):
+
+- code: https://github.com/dutchhansen/multicalibration
+- paper: https://arxiv.org/abs/2406.06487
+
+See also `LICENSE` and `NOTICE`. If you use this adapted infrastructure,
+please cite:
+
+```bibtex
+@inproceedings{hansen2024multicalibration,
+  title={When is Multicalibration Post-Processing Necessary?},
+  author={Hansen, Dutch and Devic, Siddartha and Nakkiran, Preetum and Sharan, Vatsal},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2024}
+}
+```
