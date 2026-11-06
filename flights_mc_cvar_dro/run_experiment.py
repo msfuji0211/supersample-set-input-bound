@@ -871,7 +871,7 @@ def axis_limits(estimates: pd.DataFrame, metrics: tuple[str, ...]) -> tuple[floa
 def draw_sensitivity(estimates: pd.DataFrame, sweep: str, output_dir: Path) -> None:
     plt.rcParams.update({
         "font.family": "DejaVu Sans", "font.size": 5.25,
-        "mathtext.fontset": "dejavusans", "pdf.fonttype": 42,
+        "mathtext.fontset": "dejavusans", "pdf.fonttype": 42, "ps.fonttype": 42,
         "axes.edgecolor": "#78888D", "axes.linewidth": 0.65,
     })
     if sweep == "c":
@@ -998,6 +998,7 @@ def save_mc_figure(estimates: pd.DataFrame, output_dir: Path) -> None:
             "font.size": 5.25,
             "mathtext.fontset": "dejavusans",
             "pdf.fonttype": 42,
+            "ps.fonttype": 42,
             "axes.edgecolor": "#78888D",
             "axes.linewidth": 0.65,
         }
@@ -1217,7 +1218,7 @@ def main() -> None:
     mc_estimates = summarize_mc(mc_independent_runs)
     plt.rcParams.update({
         "font.family": "DejaVu Sans", "font.size": 5.25,
-        "mathtext.fontset": "dejavusans", "pdf.fonttype": 42,
+        "mathtext.fontset": "dejavusans", "pdf.fonttype": 42, "ps.fonttype": 42,
         "axes.edgecolor": "#78888D", "axes.linewidth": 0.65,
     })
     with TemporaryDirectory(prefix="flights-output-", dir=args.output_dir) as folder:

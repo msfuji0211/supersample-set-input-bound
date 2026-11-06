@@ -14,9 +14,22 @@ import os
 import sys
 from pathlib import Path
 
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+
+# Embed TrueType (Type 42) fonts so paper PDFs do not contain Type 3 fonts.
+plt.rcParams.update(
+    {
+        "font.family": "DejaVu Sans",
+        "mathtext.fontset": "dejavusans",
+        "pdf.fonttype": 42,
+        "ps.fonttype": 42,
+    }
+)
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(SCRIPT_DIR)
